@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Dropdown from "./Dropdown";
+import Dropdown from "./Sidebar";
 
 const navlinks = [
 	{
@@ -26,11 +26,10 @@ const Header = () => {
 		return setDrop(!drop);
 	};
 	return (
-		<header className="flex  justify-between p-5">
+		<header className="relative flex  justify-between p-24">
 			<div
-				className="relative md:hidden hover:cursor-pointer flex flex-col items-center justify-center"
-				onMouseEnter={toggle}
-				onMouseLeave={toggle}
+				className=" md:hidden hover:cursor-pointer flex flex-col items-center justify-center"
+				onClick={toggle}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -46,8 +45,8 @@ const Header = () => {
 						d="M4 6h16M4 12h16M4 18h7"
 					/>
 				</svg>
-				{drop && <Dropdown navlinks={navlinks} />}
 			</div>
+			{drop && <Dropdown navlinks={navlinks} toggle={toggle} />}
 
 			<Link
 				to="/"
@@ -61,7 +60,7 @@ const Header = () => {
 						return (
 							<Link
 								to={links.to}
-								className="uppercase  text-sm font-fredoka pl-5"
+								className="uppercase tracking-widest text-gray-400 text-sm font-fredoka pl-5 hover:text-black transition-all duration-500"
 							>
 								{links.name}
 							</Link>
@@ -70,11 +69,11 @@ const Header = () => {
 				)}
 			</nav>
 
-			<div className="hidden sm:flex items-center justify-between space-x-5 pl-8">
+			{/* <div className="hidden sm:flex items-center justify-between space-x-5 pl-8">
 				<button className="text-sm font-fredoka px-10 py-3 bg-emerald-300 rounded-lg tracking-widest">
 					Subscribe
 				</button>
-			</div>
+			</div> */}
 		</header>
 	);
 };
