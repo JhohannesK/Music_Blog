@@ -50,7 +50,7 @@ const Header = () => {
 
 			<Link
 				to="/"
-				className="uppercase text-3xl font-bold font-syne tracking-wider whitespace-nowrap"
+				className="uppercase text-5xl font-bold font-syne tracking-wider whitespace-nowrap"
 			>
 				Music Blog
 			</Link>
