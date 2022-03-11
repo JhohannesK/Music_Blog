@@ -4,7 +4,7 @@ import User from '../models/Users.js'
 import bcrypt from 'bcrypt'
 
 // Register user
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
       try {
             const salt = await bcrypt.genSalt(10)
             const hashedPass = await bcrypt.hash(req.body.password, salt)
@@ -23,6 +23,16 @@ router.post("/", async (req, res) => {
 
 
 
-router.post('/')
+router.post('/login', async (req, res) => {
+      try {
+            const user = User.findOne({ username: req.body.username })
+            !user && res.status(402).json("Wrong Credentials")
+
+            const validate = await bcrypt.compare(req.body.password, user.password)
+      } catch (error) {
+            res.status(500).json(error)
+
+      }
+})
 
 export default router
